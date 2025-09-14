@@ -1,19 +1,11 @@
 <p>👀 Page Views : <span id="pageViews">Loading...</span></p>
+<p>👀 Page Views : <span id="affiliates">Loading...</span></p>
+<p>👀 Page Views : <span id="orders">Loading...</span></p>
+<p>👀 Page Views : <span id="revenue">Loading...</span></p>
+<p>👀 Page Views : <span id="commissions">Loading...</span></p>
 
 <script>
-async function fetchPageViews() {
-  try {
-    const res = await fetch('/api/traffic');
-    const data = await res.json();
 
-    document.getElementById('pageViews').textContent = data.pageViews ?? 0;
-  } catch (err) {
-    console.error(err);
-    document.getElementById('pageViews').textContent = 'Erreur';
-  }
-}
-
-fetchPageViews();
 
 async function fetchStats() {
   try {
