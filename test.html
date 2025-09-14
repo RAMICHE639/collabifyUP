@@ -1,28 +1,17 @@
-<div id="stats">
-    📊 Mes Statistiques GoAffPro
-    <p>👀 Page Views : <span id="pageViews">Loading...</span></p>
-    <p>🤝 Affiliates : <span id="affiliates">Loading...</span></p>
-    <p>📦 Orders : <span id="orders">Loading...</span></p>
-    <p>💰 Revenue : <span id="revenue">Loading...</span></p>
-    <p>🏆 Commissions : <span id="commissions">Loading...</span></p>
-  </div>
-  
-  <script>
-    async function loadStats() {
-      try {
-        const res = await fetch("/api/stats");
-        const data = await res.json();
-  
-        document.getElementById("pageViews").textContent = data.pageViews;
-        document.getElementById("affiliates").textContent = data.affiliates;
-        document.getElementById("orders").textContent = data.orders;
-        document.getElementById("revenue").textContent = data.revenue + " €";
-        document.getElementById("commissions").textContent = data.commissions + " €";
-      } catch (err) {
-        console.error(err);
-      }
-    }
-  
-    loadStats();
-  </script>
-  
+<p>👀 Page Views : <span id="pageViews">Loading...</span></p>
+
+<script>
+async function fetchPageViews() {
+  try {
+    const res = await fetch('/api/traffic');
+    const data = await res.json();
+
+    document.getElementById('pageViews').textContent = data.pageViews ?? 0;
+  } catch (err) {
+    console.error(err);
+    document.getElementById('pageViews').textContent = 'Erreur';
+  }
+}
+
+fetchPageViews();
+</script>
