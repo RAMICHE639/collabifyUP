@@ -15,15 +15,18 @@
       }
   
       const data = await response.json();
+      console.log("GoAffPro response:", data);
+
   
       // Mapping des champs pour le front end
       const stats = {
-        pageViews: data.page_views,   // selon le JSON réel
-        affiliates: data.affiliates_total,
-        orders: data.orders_total,
-        revenue: data.revenue_total,
-        commissions: data.commissions_total
+        pageViews: data.page_views_total ?? data.page_views ?? 0,
+        affiliates: data.affiliates_total ?? data.affiliates ?? 0,
+        orders: data.orders_total ?? data.orders ?? 0,
+        revenue: data.revenue_total ?? data.revenue ?? 0,
+        commissions: data.commissions_total ?? data.commissions ?? 0
       };
+      
   
       return res.status(200).json(stats);
     } catch (error) {
