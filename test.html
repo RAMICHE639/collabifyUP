@@ -1,43 +1,28 @@
-
-
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-  </head>
-  <body>
-    <div class="stats-container">
-        <h2>📊 Mes Statistiques GoAffPro</h2>
-        <p><strong>👀 Page Views :</strong> <span id="pageViews">Loading...</span></p>
-        <p><strong>🤝 Affiliates :</strong> <span id="affiliatesCount">Loading...</span></p>
-        <p><strong>📦 Orders :</strong> <span id="ordersCount">Loading...</span></p>
-        <p><strong>💰 Revenue :</strong> <span id="revenue">Loading...</span></p>
-        <p><strong>🏆 Commissions :</strong> <span id="commissions">Loading...</span></p>
-      </div>
-      
-      <script>
-        async function fetchStats() {
-          try {
-            const response = await fetch("/api/stats");
-            const data = await response.json();
-      
-            console.log("Stats GoAffPro:", data);
-      
-            document.getElementById("pageViews").innerText = data.pageViews || "0";
-            document.getElementById("affiliatesCount").innerText = data.affiliates || "0";
-            document.getElementById("ordersCount").innerText = data.orders || "0";
-            document.getElementById("revenue").innerText = data.revenue ? data.revenue + " €" : "0 €";
-            document.getElementById("commissions").innerText = data.commissions ? data.commissions + " €" : "0 €";
-          } catch (err) {
-            console.error("Erreur récupération stats:", err);
-          }
-        }
-      
-        window.addEventListener("DOMContentLoaded", fetchStats);
-      </script>
-      
-    
-  </body>
-  </html>
+<div id="stats">
+    📊 Mes Statistiques GoAffPro
+    <p>👀 Page Views : <span id="pageViews">Loading...</span></p>
+    <p>🤝 Affiliates : <span id="affiliates">Loading...</span></p>
+    <p>📦 Orders : <span id="orders">Loading...</span></p>
+    <p>💰 Revenue : <span id="revenue">Loading...</span></p>
+    <p>🏆 Commissions : <span id="commissions">Loading...</span></p>
+  </div>
+  
+  <script>
+    async function loadStats() {
+      try {
+        const res = await fetch("/api/stats");
+        const data = await res.json();
+  
+        document.getElementById("pageViews").textContent = data.pageViews;
+        document.getElementById("affiliates").textContent = data.affiliates;
+        document.getElementById("orders").textContent = data.orders;
+        document.getElementById("revenue").textContent = data.revenue + " €";
+        document.getElementById("commissions").textContent = data.commissions + " €";
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  
+    loadStats();
+  </script>
+  
