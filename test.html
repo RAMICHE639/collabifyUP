@@ -14,4 +14,22 @@ async function fetchPageViews() {
 }
 
 fetchPageViews();
+
+async function fetchStats() {
+  try {
+    const res = await fetch('/api/stats');
+    const data = await res.json();
+
+    document.getElementById('pageViews').textContent = data.pageViews;
+    document.getElementById('affiliates').textContent = data.affiliates;
+    document.getElementById('orders').textContent = data.orders;
+    document.getElementById('revenue').textContent = data.revenue + " €";
+    document.getElementById('commissions').textContent = data.commissions + " €";
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+fetchStats();
+
 </script>
