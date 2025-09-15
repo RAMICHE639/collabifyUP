@@ -665,6 +665,23 @@
     });
     </script>
 
+
+<script>
+  // Bloquer l'accès direct si aucun code valide
+  window.addEventListener("DOMContentLoaded", function() {
+    const validCode = localStorage.getItem("accessCode");
+
+    if(!validCode) {
+      // Rediriger vers la page de code
+      window.location.href = "code-acces.html";
+    }
+
+    // Optionnel : tu peux aussi vérifier le code spécifique si tu veux bloquer certains codes
+    // ex : if(validCode !== "ritashape") window.location.href = "code-acces.html";
+  });
+</script>
+
+
     
   </body>
 </html>

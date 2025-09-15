@@ -754,28 +754,36 @@
       }
     });
     </script>
-    <script>
-        function checkCode() {
-          const code = document.getElementById('accessCode').value.trim();
-      
-          if(code === "RITASHAPE") {
-            window.location.href = "chargement-code-valid.html"; // login.htmlredirige vers dashboard.html
-          } else if(code === "code40") {
-            window.location.href = "dashboard-rita.html";
-          } else if(code === "ritashape") {
-            window.location.href = "chargement-code-valid.html"; // redirige vers dashboard-rita.html
-          } else {
-            alert("Code invalide ! Le code envoyé par email par notre équipe"); // message si code incorrect
-          }
-        }
-      
-        // Optionnel : appuyer sur Enter pour valider
-        document.getElementById("accessCode").addEventListener("keypress", function(e) {
-          if(e.key === "Enter") {
-            checkCode();
-          }
-        });
-      </script>
+
+    <!--LACESES POUR LA PAGE LOGIN -->
+   <script>
+    function checkCode() {
+      const code = document.getElementById('accessCode').value.trim().toLowerCase();
+  
+      // Définir les codes valides et la page de redirection correspondante
+      const codes = {
+        "ritashape": "login.html",
+        "RITASHAPE": "login.html",
+        "code40": "dashboard-rita.html",
+        "autrecode": "autre-page.html"
+      };
+  
+      if(codes[code]) {
+        // Stocker le code valide pour vérification sur login.html
+        localStorage.setItem("accessCode", code);
+  
+        // Rediriger vers la page correspondante
+        window.location.href = codes[code];
+      } else {
+        alert("Code invalide ! Le code a été envoyé par email par notre équipe.");
+      }
+    }
+  
+    // Valider avec Enter
+    document.getElementById("accessCode").addEventListener("keypress", function(e) {
+      if(e.key === "Enter") checkCode();
+    });
+  </script>
       <script src="js/securite.js"></script>
 
     
